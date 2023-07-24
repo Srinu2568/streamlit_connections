@@ -37,7 +37,7 @@ def main():
 
   st.divider()
 
-  st.text('''This app is built to showcase the new feature i.e. st.experimental_connect()
+  st.text('''This app is built to showcase the new feature i.e. st.ExperimentalBaseConnection
            and used swapi.dev which is an starwars api.''')
 
 if __name__ == "__main__":
