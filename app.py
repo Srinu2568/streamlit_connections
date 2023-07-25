@@ -6,20 +6,20 @@ def main():
   st.header("Star Wars API")
   st.image('starwars.png')
 
-
-  # Initialize the connection object
-  connection = SwapiConnect(url="https://swapi.dev/api/")
-  connection._connect() #Initialize the connection
+  # setup the connection
+  connection = st.experimental_connection('swapi', type=SwapiConnect)
+  connection._connect(url="https://swapi.dev/api/") #Initialize the connection
 
   titles = []
   characters = []
   for i in range(1, 7):
+    # Use the query method to retrieve data
     data = connection.query(f'films/{i}')
     titles.append(data['title'])
 
   option = st.selectbox('Choose a movie', titles)
   movie_num = int(titles.index(option)) + 1
-  movie_data = connection.query(f"films/"+str(movie_num))
+  movie_data = connection.query(f"/films/"+str(movie_num))
   characters_data = movie_data["characters"]
   for char in characters_data:
      character = connection.query(url2=char)
