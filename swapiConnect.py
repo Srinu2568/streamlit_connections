@@ -17,7 +17,7 @@ class SwapiConnect(ExperimentalBaseConnection[requests.Session]):
         return LookupError("Implement the Connection first")
       return self.connection
 
-    @st.cache_data(ttl=60 * 60)
+    @st.cache_data()
     def query(_self, query_param=None, url2=None):
         try:
             cursor = _self.cursor()
@@ -33,7 +33,6 @@ class SwapiConnect(ExperimentalBaseConnection[requests.Session]):
         elif url2 == None:
           url = _self.url
           response = cursor.get(url+query_param)
-          print(url+query_param)
           if response.status_code == 200:
               data = response.json()
               return data
